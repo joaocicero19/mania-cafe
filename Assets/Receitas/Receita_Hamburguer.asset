@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6adf0f55fee2741ac146106aee72e3, type: 3}
+  m_Name: Receita_Hamburguer
+  m_EditorClassIdentifier: Assembly-CSharp::ReceitaData
+  nomeReceita: Hamburguer
+  tempoPreparo: 10
+  prefabComida: {fileID: 4945750618776999580, guid: 6cca64c9cadeed74b92d3498278c88d7, type: 3}
