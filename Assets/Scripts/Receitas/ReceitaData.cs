@@ -13,4 +13,7 @@ public class ReceitaData : ScriptableObject
 
     [Header("Visual temporário")]
     public GameObject prefabComida;
+
+    [Header("Recompensas")]
+    public int xpAoVender = 10;
 }

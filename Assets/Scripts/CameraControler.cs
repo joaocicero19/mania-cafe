@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
@@ -22,8 +23,22 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        if (Mouse.current == null)
+            return;
+
+        if (EstaSobreUI())
+            return;
+
         HandlePan();
         HandleZoom();
+    }
+
+    bool EstaSobreUI()
+    {
+        if (EventSystem.current == null)
+            return false;
+
+        return EventSystem.current.IsPointerOverGameObject();
     }
 
     void HandlePan()

@@ -19,11 +19,15 @@ public class SistemaPersonalizacao : MonoBehaviour
 
     private void Start()
     {
-        imagemPreview.gameObject.SetActive(false);
+        if (imagemPreview != null)
+            imagemPreview.gameObject.SetActive(false);
     }
 
     private void Update()
     {
+        if (imagemPreview == null)
+            return;
+
         if (imagemPreview.gameObject.activeSelf)
         {
             imagemPreview.transform.position =

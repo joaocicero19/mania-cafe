@@ -23,6 +23,12 @@ public class BalaoInfoCursor : MonoBehaviour
 
     private void Update()
     {
+        if (DeveBloquearBalao())
+        {
+            Esconder();
+            return;
+        }
+
         if (visivel)
         {
             painelBalao.position = Input.mousePosition + new Vector3(offset.x, offset.y, 0f);
@@ -41,6 +47,12 @@ public class BalaoInfoCursor : MonoBehaviour
 
     public void Mostrar(string texto)
     {
+        if (DeveBloquearBalao())
+        {
+            Esconder();
+            return;
+        }
+
         if (tempoFixo > 0f)
             return;
 
@@ -52,6 +64,12 @@ public class BalaoInfoCursor : MonoBehaviour
 
     public void MostrarTemporario(string texto, float duracao)
     {
+        if (DeveBloquearBalao())
+        {
+            Esconder();
+            return;
+        }
+
         textoBalao.text = texto;
         painelBalao.gameObject.SetActive(true);
         visivel = true;
@@ -67,5 +85,23 @@ public class BalaoInfoCursor : MonoBehaviour
 
         visivel = false;
         tempoFixo = 0f;
+    }
+
+    private bool DeveBloquearBalao()
+    {
+        if (MenuLoja.LojaAberta)
+            return true;
+
+        if (LivroReceitasController.Instance != null &&
+            LivroReceitasController.Instance.painelLivro != null &&
+            LivroReceitasController.Instance.painelLivro.activeSelf)
+            return true;
+
+        ModoEdicaoController modoEdicao = FindFirstObjectByType<ModoEdicaoController>();
+
+        if (modoEdicao != null && modoEdicao.EstaEmModoEdicao())
+            return true;
+
+        return false;
     }
 }

@@ -16,3 +16,4 @@ MonoBehaviour:
   tempoPreparo: 8
   unidadesGeradas: 3
   prefabComida: {fileID: 4945750618776999580, guid: 6cca64c9cadeed74b92d3498278c88d7, type: 3}
+  xpAoVender: 15

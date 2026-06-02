@@ -40,6 +40,9 @@ public class FogaoController : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (MenuLoja.LojaAberta)
+            return;
+
         if (InteracaoBloqueada())
             return;
 
@@ -157,6 +160,11 @@ public class FogaoController : MonoBehaviour
 
                 if (recebeu)
                 {
+                    if (SistemaNivelXP.instancia != null && receitaAtual != null)
+                    {
+                        SistemaNivelXP.instancia.GanharXP(receitaAtual.xpAoVender);
+                    }
+
                     LimparFogaoDepoisDeServir();
                     return;
                 }
@@ -172,6 +180,11 @@ public class FogaoController : MonoBehaviour
 
                 if (recebeu)
                 {
+                    if (SistemaNivelXP.instancia != null && receitaAtual != null)
+                    {
+                        SistemaNivelXP.instancia.GanharXP(receitaAtual.xpAoVender);
+                    }
+
                     LimparFogaoDepoisDeServir();
                     return;
                 }
@@ -206,6 +219,9 @@ public class FogaoController : MonoBehaviour
     }
     private void OnMouseEnter()
     {
+        if (MenuLoja.LojaAberta)
+            return;
+
         if (InteracaoBloqueada())
             return;
 
@@ -217,7 +233,7 @@ public class FogaoController : MonoBehaviour
             BalaoInfoCursor.Instance.Mostrar("Abrir Livro de Receitas");
         }
     }
-    
+
 
     private void OnMouseExit()
     {

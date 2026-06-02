@@ -69,6 +69,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -5696269277257844917, guid: fa9f313d4ca6ccb41bffd01527bf8b55, type: 3}
       insertIndex: -1
       addedObject: {fileID: 92305178471621467}
+    - targetCorrespondingSourceObject: {fileID: -5696269277257844917, guid: fa9f313d4ca6ccb41bffd01527bf8b55, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2843252301246099460}
   m_SourcePrefab: {fileID: -4161369568681901532, guid: fa9f313d4ca6ccb41bffd01527bf8b55, type: 3}
 --- !u!1 &3859833875333535078 stripped
 GameObject:
@@ -88,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjetoEditavel
   offsetGrid: {x: 0, y: 0.01, z: 0}
+  tamanhoGrid: {x: 1, y: 1}
 --- !u!65 &1746056633996607333
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -125,3 +129,15 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0.4, z: -0.024}
   m_TimeToStationary: 0.5
+--- !u!114 &2843252301246099460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3859833875333535078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e011ecb2cea15b45afc86b8a9e9d6e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CadeiraCliente
