@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class AreaCafeManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class AreaCafeManager : MonoBehaviour
 
     [Header("Origem da área do café")]
     public Vector2Int origem = Vector2Int.zero;
+    private HashSet<Vector2Int> gridsExtrasLiberados = new HashSet<Vector2Int>();
 
     private void Awake()
     {
@@ -30,10 +32,16 @@ public class AreaCafeManager : MonoBehaviour
         int minZ = origem.y;
         int maxZ = origem.y + profundidade - 1;
 
-        return grid.x >= minX &&
-               grid.x <= maxX &&
-               grid.y >= minZ &&
-               grid.y <= maxZ;
+        bool dentroAreaInicial =
+            grid.x >= minX &&
+            grid.x <= maxX &&
+            grid.y >= minZ &&
+            grid.y <= maxZ;
+
+        if (dentroAreaInicial)
+            return true;
+
+        return gridsExtrasLiberados.Contains(grid);
     }
 
     public Vector2Int MundoParaGrid(Vector3 posicaoMundo)
@@ -42,6 +50,14 @@ public class AreaCafeManager : MonoBehaviour
         int z = Mathf.RoundToInt(posicaoMundo.z);
 
         return new Vector2Int(x, z);
+    }
+    public void LiberarGridExtra(Vector2Int grid)
+    {
+        if (!gridsExtrasLiberados.Contains(grid))
+        {
+            gridsExtrasLiberados.Add(grid);
+            Debug.Log("Grid extra liberado para edição: " + grid);
+        }
     }
 
     private void OnDrawGizmos()
