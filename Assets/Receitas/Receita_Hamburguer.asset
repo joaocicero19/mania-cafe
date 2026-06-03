@@ -14,4 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ReceitaData
   nomeReceita: Hamburguer
   tempoPreparo: 10
-  prefabComida: {fileID: 4945750618776999580, guid: 6cca64c9cadeed74b92d3498278c88d7, type: 3}
+  unidadesGeradas: 5
+  xpAoVender: 10
+  prefabPanelaPreparo: {fileID: 3363248586468320672, guid: 0943748e20d12d647bcd50274b6358f0, type: 3}
+  offsetPosicaoPanela: {x: 0, y: 0, z: 0}
+  offsetRotacaoPanela: {x: 0, y: 45, z: 0}
+  escalaPanela: {x: 1.3, y: 1.3, z: 1.3}
+  prefabComidaPronta: {fileID: 4945750618776999580, guid: 6cca64c9cadeed74b92d3498278c88d7, type: 3}

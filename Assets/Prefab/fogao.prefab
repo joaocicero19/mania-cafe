@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1019849670462381770}
   m_Layer: 6
-  m_Name: Socket_Comida
+  m_Name: SocketPanela
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5542e2bfcc93ef74b8acd5abf8060d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FogaoController
-  socketComida: {fileID: 1019849670462381770}
+  socketPanela: {fileID: 1019849670462381770}
 --- !u!114 &20323960566332859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjetoEditavel
   offsetGrid: {x: 0, y: 0.5, z: 0}
+  tamanhoGrid: {x: 1, y: 1}
 --- !u!208 &2879454527914831586
 NavMeshObstacle:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6545440744847188540}
   m_Layer: 6
-  m_Name: Socket_Comida_Balcao
+  m_Name: SocketComidaPronta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1092b69b0a3df56479854e13aab31672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BalcaoController
-  socketComida: {fileID: 6545440744847188540}
+  socketComidaPronta: {fileID: 6545440744847188540}
 --- !u!65 &-6852193110085337123
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjetoEditavel
   offsetGrid: {x: 0, y: 0.5, z: 0}
+  tamanhoGrid: {x: 1, y: 1}
 --- !u!208 &4621078012379138855
 NavMeshObstacle:
   m_ObjectHideFlags: 0

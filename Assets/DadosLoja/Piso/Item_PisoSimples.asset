@@ -18,7 +18,7 @@ MonoBehaviour:
   categoria: 3
   icone: {fileID: 0}
   prefabObjeto: {fileID: 0}
-  materialPersonalizacao: {fileID: 2100000, guid: e5dec6140562972498ad6be65b731acc, type: 2}
+  materialPersonalizacao: {fileID: 2100000, guid: 87e2546720ce13340a4746a7e5a6bcbb, type: 2}
   ehPersonalizacao: 1
   offsetPosicionamento: {x: 0, y: 0, z: 0}
   tamanhoGrid: {x: 1, y: 1}

@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class BalcaoController : MonoBehaviour
 {
-    public Transform socketComida;
+    [Header("Referências")]
+    public Transform socketComidaPronta;
 
     private GameObject comidaAtual;
     private ComidaController comidaAtualController;
@@ -12,77 +13,75 @@ public class BalcaoController : MonoBehaviour
         return comidaAtualController == null;
     }
 
-    public bool TemMesmoPrato(ComidaController comida)
+    public bool TemMesmoPrato(string nomePrato)
     {
         if (comidaAtualController == null)
             return false;
 
-        if (comida == null)
+        if (string.IsNullOrEmpty(nomePrato))
             return false;
 
-        string pratoAtual = comidaAtualController.GetNomePrato();
-        string pratoNovo = comida.GetNomePrato();
-
-        Debug.Log("Comparando pratos:");
-        Debug.Log("Atual: " + pratoAtual);
-        Debug.Log("Novo: " + pratoNovo);
-
-        return pratoAtual.Equals(pratoNovo);
+        return comidaAtualController.GetNomePrato().Equals(nomePrato);
     }
 
-    public bool ReceberObjetoComida(GameObject comida)
+    public bool TemMesmoPrato(ComidaController comida)
     {
         if (comida == null)
             return false;
 
-        if (socketComida == null)
+        return TemMesmoPrato(comida.GetNomePrato());
+    }
+
+    public bool ReceberComidaPronta(ReceitaData receita)
+    {
+        if (receita == null)
+            return false;
+
+        if (socketComidaPronta == null)
         {
-            Debug.LogWarning("Socket_Comida do balcão não definido.");
+            Debug.LogWarning("SocketComidaPronta do balcão não definido.");
             return false;
         }
 
-        ComidaController novaComidaController = comida.GetComponent<ComidaController>();
-
-        if (novaComidaController == null)
+        if (receita.prefabComidaPronta == null)
         {
-            Debug.LogWarning("A comida recebida não tem ComidaController.");
+            Debug.LogWarning("A receita não tem Prefab Comida Pronta configurado.");
             return false;
         }
 
         if (comidaAtualController != null)
         {
-            if (TemMesmoPrato(novaComidaController))
+            if (TemMesmoPrato(receita.nomeReceita))
             {
-                int totalUnidades =
-                    comidaAtualController.GetUnidades() + novaComidaController.GetUnidades();
-
+                int totalUnidades = comidaAtualController.GetUnidades() + receita.unidadesGeradas;
                 comidaAtualController.DefinirUnidades(totalUnidades);
-
-                Destroy(comida);
-
-                Debug.Log("Unidades acumuladas no balcão: " + totalUnidades);
-
                 return true;
             }
 
             return false;
         }
 
+        comidaAtual = Instantiate(receita.prefabComidaPronta, socketComidaPronta.position, socketComidaPronta.rotation);
+        comidaAtual.transform.SetParent(socketComidaPronta);
+        comidaAtual.transform.localPosition = Vector3.zero;
+        comidaAtual.transform.localRotation = Quaternion.identity;
 
-        comidaAtual = comida;
-        comidaAtualController = novaComidaController;
+        comidaAtualController = comidaAtual.GetComponent<ComidaController>();
 
-        comida.transform.SetParent(socketComida);
-        comida.transform.localPosition = Vector3.zero;
-        comida.transform.localRotation = Quaternion.identity;
+        if (comidaAtualController == null)
+        {
+            Debug.LogWarning("O Prefab Comida Pronta não tem ComidaController.");
+            Destroy(comidaAtual);
+            comidaAtual = null;
+            return false;
+        }
 
+        comidaAtualController.ConfigurarDadosDoPrato(receita.nomeReceita, receita.unidadesGeradas);
         comidaAtualController.MarcarComoNoBalcao();
 
-        Debug.Log("Nova comida colocada no balcão: " + comidaAtualController.GetNomePrato());
-
         return true;
-
     }
+
     public bool TemComidaDisponivel()
     {
         if (comidaAtualController == null)
@@ -102,16 +101,11 @@ public class BalcaoController : MonoBehaviour
             return false;
 
         unidadesAtuais--;
-
         comidaAtualController.DefinirUnidades(unidadesAtuais);
 
-        Debug.Log("NPC pegou 1 unidade. Restam: " + unidadesAtuais);
-
-        // acabou a comida
         if (unidadesAtuais <= 0)
         {
             Destroy(comidaAtual);
-
             comidaAtual = null;
             comidaAtualController = null;
         }
