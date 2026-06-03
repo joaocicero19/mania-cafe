@@ -5,6 +5,11 @@ using System.Collections.Generic;
 public class MenuLoja : MonoBehaviour
 {
     public static bool LojaAberta = false;
+    public static bool EstaPosicionandoItem = false;
+
+    private Vector3 posicaoMouseAoClicar;
+    private bool iniciouCliqueColocacao = false;
+    public float limiteArrastoClique = 10f;
 
     [Header("UI")]
     public GameObject painelLoja;
@@ -46,7 +51,20 @@ public class MenuLoja : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            ConfirmarColocacao();
+            posicaoMouseAoClicar = Input.mousePosition;
+            iniciouCliqueColocacao = true;
+        }
+
+        if (Input.GetMouseButtonUp(0) && iniciouCliqueColocacao)
+        {
+            float distanciaArrasto = Vector3.Distance(posicaoMouseAoClicar, Input.mousePosition);
+
+            if (distanciaArrasto <= limiteArrastoClique)
+            {
+                ConfirmarColocacao();
+            }
+
+            iniciouCliqueColocacao = false;
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -90,6 +108,7 @@ public class MenuLoja : MonoBehaviour
         itemAtual = item;
 
         colocandoItem = true;
+        EstaPosicionandoItem = true;
 
         if (painelLoja != null)
         {
@@ -110,9 +129,38 @@ public class MenuLoja : MonoBehaviour
     }
     public void SelecionarItemNovo(ItemLojaData itemData)
     {
-        if (itemData == null || itemData.prefabObjeto == null)
+        if (itemData == null)
         {
             Debug.LogWarning("ItemLojaData inválido.");
+            return;
+        }
+
+        // PERSONALIZAÇÃO (PISO/PAREDE)
+        if (itemData.ehPersonalizacao)
+        {
+            SistemaPersonalizacao sistema =
+                FindObjectOfType<SistemaPersonalizacao>();
+
+            if (sistema != null)
+            {
+                sistema.SelecionarPiso(
+                    itemData.materialPersonalizacao
+                );
+            }
+
+            if (painelLoja != null)
+            {
+                painelLoja.SetActive(false);
+                LojaAberta = false;
+            }
+
+            return;
+        }
+
+        // OBJETOS NORMAIS
+        if (itemData.prefabObjeto == null)
+        {
+            Debug.LogWarning("Prefab do item é nulo.");
             return;
         }
 
@@ -214,12 +262,7 @@ public class MenuLoja : MonoBehaviour
             col.enabled = true;
         }
 
-        Destroy(previewObjeto);
-
-        previewObjeto = null;
-        itemAtual = null;
-
-        colocandoItem = false;
+        AtualizarPreview();
     }
 
     private void CancelarColocacao()
@@ -233,6 +276,7 @@ public class MenuLoja : MonoBehaviour
         itemAtual = null;
 
         colocandoItem = false;
+        EstaPosicionandoItem = false;
     }
 
     private void DesativarColisoes(GameObject obj)

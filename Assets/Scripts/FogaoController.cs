@@ -14,7 +14,9 @@ public class FogaoController : MonoBehaviour
     private bool preparando = false;
     private bool comidaPronta = false;
     private float tempoRestante = 0f;
+
     private ModoEdicaoController modoEdicaoController;
+
     private void Start()
     {
         balcoes = FindObjectsByType<BalcaoController>(FindObjectsSortMode.None);
@@ -41,6 +43,9 @@ public class FogaoController : MonoBehaviour
     private void OnMouseDown()
     {
         if (MenuLoja.LojaAberta)
+            return;
+
+        if (MenuLoja.EstaPosicionandoItem)
             return;
 
         if (InteracaoBloqueada())
@@ -97,6 +102,7 @@ public class FogaoController : MonoBehaviour
 
         Debug.Log("Preparando: " + receitaAtual.nomeReceita);
     }
+
     private void LimparFogaoDepoisDeServir()
     {
         comidaAtual = null;
@@ -105,6 +111,7 @@ public class FogaoController : MonoBehaviour
         preparando = false;
         tempoRestante = 0f;
     }
+
     private bool InteracaoBloqueada()
     {
         if (modoEdicaoController != null && modoEdicaoController.EstaEmModoEdicao())
@@ -151,7 +158,6 @@ public class FogaoController : MonoBehaviour
             return;
         }
 
-        // 1. Primeiro tenta acumular em balcão que já tem o mesmo prato
         foreach (BalcaoController balcao in balcoes)
         {
             if (balcao != null && balcao.TemMesmoPrato(comidaController))
@@ -171,7 +177,6 @@ public class FogaoController : MonoBehaviour
             }
         }
 
-        // 2. Depois tenta colocar em um balcão vazio
         foreach (BalcaoController balcao in balcoes)
         {
             if (balcao != null && balcao.EstaVazio())
@@ -191,7 +196,6 @@ public class FogaoController : MonoBehaviour
             }
         }
 
-        // 3. Se não achou lugar
         MostrarAvisoSemBalcao();
     }
 
@@ -217,9 +221,13 @@ public class FogaoController : MonoBehaviour
 
         return receitaAtual.nomeReceita;
     }
+
     private void OnMouseEnter()
     {
         if (MenuLoja.LojaAberta)
+            return;
+
+        if (MenuLoja.EstaPosicionandoItem)
             return;
 
         if (InteracaoBloqueada())
@@ -234,10 +242,8 @@ public class FogaoController : MonoBehaviour
         }
     }
 
-
     private void OnMouseExit()
     {
-
         if (BalaoInfoCursor.Instance != null)
         {
             BalaoInfoCursor.Instance.Esconder();

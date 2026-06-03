@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LojaDatabase
   itens:
   - {fileID: 11400000, guid: 7b33b335af32d0f4581ffff90312791e, type: 2}
+  - {fileID: 11400000, guid: 091d96e0b941da24bbfe3845eebcf6cb, type: 2}
+  - {fileID: 11400000, guid: 441f41bcb9a7cd44ba37e84c9a3840e1, type: 2}
+  - {fileID: 11400000, guid: 441ed20f851fe45429aded567a2767c7, type: 2}

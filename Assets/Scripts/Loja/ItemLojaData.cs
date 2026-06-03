@@ -17,6 +17,10 @@ public class ItemLojaData : ScriptableObject
     [Header("Prefab")]
     public GameObject prefabObjeto;
 
+    [Header("Personalização")]
+    public Material materialPersonalizacao;
+    public bool ehPersonalizacao;
+
     [Header("Posicionamento")]
     public Vector3 offsetPosicionamento;
 
@@ -26,4 +30,10 @@ public class ItemLojaData : ScriptableObject
     [Header("Configurações")]
     public bool usaPreview = true;
     public bool precisaAreaCafe = true;
+}
+public enum TipoPersonalizacao
+{
+    Nenhum,
+    Piso,
+    Parede
 }

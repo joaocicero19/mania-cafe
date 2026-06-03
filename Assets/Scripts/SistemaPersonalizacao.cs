@@ -33,12 +33,18 @@ public class SistemaPersonalizacao : MonoBehaviour
             imagemPreview.transform.position =
                 Mouse.current.position.ReadValue();
         }
+        if (Mouse.current.rightButton.wasPressedThisFrame)
+        {
+            CancelarSelecao();
+        }
     }
 
     public void SelecionarPiso(Material material)
     {
         materialSelecionado = material;
         tipoSelecionado = "Piso";
+
+        MenuLoja.EstaPosicionandoItem = true;
 
         Texture2D textura = material.mainTexture as Texture2D;
 
@@ -55,8 +61,12 @@ public class SistemaPersonalizacao : MonoBehaviour
         }
 
         imagemPreview.gameObject.SetActive(true);
+        imagemPreview.rectTransform.rotation =
+        Quaternion.Euler(0, 0, 45f);
 
         painelLoja.SetActive(false);
+
+        MenuLoja.LojaAberta = false;
 
         Debug.Log("Piso selecionado");
     }
@@ -65,6 +75,8 @@ public class SistemaPersonalizacao : MonoBehaviour
     {
         materialSelecionado = null;
         tipoSelecionado = "";
+
+        MenuLoja.EstaPosicionandoItem = false;
 
         imagemPreview.gameObject.SetActive(false);
     }

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce561e1bf6edb744ba71c7521b4b2dab, type: 3}
+  m_Name: Item_BalcaoSimples
+  m_EditorClassIdentifier: Assembly-CSharp::ItemLojaData
+  nomeItem: "Balc\xE3o Simples"
+  descricao: "Um Balc\xE3o simples para servir os seus pratos"
+  preco: 100
+  categoria: 2
+  icone: {fileID: 0}
+  prefabObjeto: {fileID: 121781901820102585, guid: 7c26318831f39f8499081f58005ee4d5, type: 3}
+  materialPersonalizacao: {fileID: 0}
+  ehPersonalizacao: 0
+  offsetPosicionamento: {x: 0, y: 0.5, z: 0}
+  tamanhoGrid: {x: 1, y: 1}
+  usaPreview: 1
+  precisaAreaCafe: 1
