@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Receita_CahorroQuente
   m_EditorClassIdentifier: Assembly-CSharp::ReceitaData
   nomeReceita: Cachorro Quente
+  categoria: 0
+  icone: {fileID: 0}
+  valorParaProduzir: 10
+  valorPorUnidade: 5
   tempoPreparo: 8
-  unidadesGeradas: 3
+  unidadesGeradas: 4
   xpAoVender: 15
   prefabPanelaPreparo: {fileID: 5971130942804576119, guid: 54fcb52a607aa524eaa5874469454002, type: 3}
   offsetPosicaoPanela: {x: 0, y: 0, z: 0}

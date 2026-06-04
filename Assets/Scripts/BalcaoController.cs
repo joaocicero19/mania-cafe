@@ -5,6 +5,9 @@ public class BalcaoController : MonoBehaviour
     [Header("Referências")]
     public Transform socketComidaPronta;
 
+    [Header("Ajustes Visuais")]
+    public Vector3 offsetComidaPronta;
+
     private GameObject comidaAtual;
     private ComidaController comidaAtualController;
 
@@ -63,7 +66,7 @@ public class BalcaoController : MonoBehaviour
 
         comidaAtual = Instantiate(receita.prefabComidaPronta, socketComidaPronta.position, socketComidaPronta.rotation);
         comidaAtual.transform.SetParent(socketComidaPronta);
-        comidaAtual.transform.localPosition = Vector3.zero;
+        comidaAtual.transform.localPosition = offsetComidaPronta;
         comidaAtual.transform.localRotation = Quaternion.identity;
 
         comidaAtualController = comidaAtual.GetComponent<ComidaController>();

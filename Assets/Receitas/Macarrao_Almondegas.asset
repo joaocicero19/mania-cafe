@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6adf0f55fee2741ac146106aee72e3, type: 3}
+  m_Name: Macarrao_Almondegas
+  m_EditorClassIdentifier: Assembly-CSharp::ReceitaData
+  nomeReceita: "Macarr\xE3o com Alm\xF4ndegas"
+  categoria: 1
+  icone: {fileID: 0}
+  valorParaProduzir: 10
+  valorPorUnidade: 5
+  tempoPreparo: 25
+  unidadesGeradas: 15
+  xpAoVender: 100
+  prefabPanelaPreparo: {fileID: 3363248586468320672, guid: 0943748e20d12d647bcd50274b6358f0, type: 3}
+  offsetPosicaoPanela: {x: 0, y: 0, z: 0}
+  offsetRotacaoPanela: {x: 0, y: 0, z: 0}
+  escalaPanela: {x: 1, y: 1, z: 1}
+  prefabComidaPronta: {fileID: 1613040975790969036, guid: 0be68b41124a722469711cce1728ca53, type: 3}

@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BalcaoController
   socketComidaPronta: {fileID: 6545440744847188540}
+  offsetComidaPronta: {x: 0, y: 0.2, z: 0}
 --- !u!65 &-6852193110085337123
 BoxCollider:
   m_ObjectHideFlags: 0
