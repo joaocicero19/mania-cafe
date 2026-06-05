@@ -5,7 +5,7 @@ public enum CategoriaReceita
     Lanches,
     Massas,
     Carnes,
-    Doces,
+    Sobremesas,
     Sopas,
     Saladas,
     Peixes,

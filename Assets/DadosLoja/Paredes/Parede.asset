@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce561e1bf6edb744ba71c7521b4b2dab, type: 3}
+  m_Name: Parede
+  m_EditorClassIdentifier: Assembly-CSharp::ItemLojaData
+  nomeItem: Parede
+  descricao: 
+  preco: 100
+  categoria: 4
+  icone: {fileID: 0}
+  prefabObjeto: {fileID: 5247101482263976329, guid: caf1bf699f2e8bc469d86be087668da8, type: 3}
+  materialPersonalizacao: {fileID: 2100000, guid: dbfaac01cda53f84b8a0ad29bbc357a5, type: 2}
+  ehPersonalizacao: 1
+  tipoPersonalizacao: 2
+  offsetPosicionamento: {x: 0, y: 0.95, z: 0.55}
+  tamanhoGrid: {x: 1, y: 1}
+  ehParede: 1
+  usaPreview: 1
+  precisaAreaCafe: 1

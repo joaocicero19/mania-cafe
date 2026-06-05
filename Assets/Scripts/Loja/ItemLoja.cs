@@ -14,4 +14,10 @@ public class ItemLoja
 
     [Header("Tamanho no Grid")]
     public Vector2Int tamanhoGrid = Vector2Int.one;
+
+    [Header("Tipo de colocação")]
+    public bool ehParede;
+
+    [Header("Personalização")]
+    public Material materialPersonalizacao;
 }

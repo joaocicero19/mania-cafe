@@ -119,9 +119,9 @@ public class LivroReceitasController : MonoBehaviour
         GerarBotoesReceitas();
     }
 
-    public void MostrarDoces()
+    public void MostrarSobremesas()
     {
-        categoriaAtual = CategoriaReceita.Doces;
+        categoriaAtual = CategoriaReceita.Sobremesas;
         GerarBotoesReceitas();
     }
 

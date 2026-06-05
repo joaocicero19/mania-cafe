@@ -23,6 +23,19 @@ public class SistemaExpansaoPorPisos : MonoBehaviour
     [Header("Configuração")]
     public float tamanhoBloco = 1f;
 
+    [Header("Paredes das Quinas")]
+    public GameObject prefabParedeEsquerda;
+    public GameObject prefabParedeDireita;
+    public Transform containerParedes;
+
+    public float alturaParede = 1.2f;
+
+    [Header("Ajuste fino das paredes")]
+    public Vector3 offsetParedeEsquerda;
+    public Vector3 offsetParedeDireita;
+    public Vector3 rotacaoParedeEsquerda;
+    public Vector3 rotacaoParedeDireita = new Vector3(0, -90, 0);
+
     [Header("NavMesh")]
     public NavMeshSurface navMeshSurface;
 
@@ -44,6 +57,8 @@ public class SistemaExpansaoPorPisos : MonoBehaviour
         maxX = novoMaxX;
         minZ = novoMinZ;
 
+        InstanciarApenasParedesDasQuinas();
+
         if (navMeshSurface != null)
             navMeshSurface.BuildNavMesh();
 
@@ -60,15 +75,13 @@ public class SistemaExpansaoPorPisos : MonoBehaviour
             return;
         }
 
-        // MUDA A LAYER DO PISO
-        int layerCafe = LayerMask.NameToLayer("AreaCafe");
+        int layerCafe = LayerMask.NameToLayer(layerAreaCafe);
 
         if (layerCafe != -1)
         {
             piso.gameObject.layer = layerCafe;
         }
 
-        // MUDA O NAVMESH MODIFIER PARA AREACAFE
         NavMeshModifier modifier = piso.GetComponent<NavMeshModifier>();
 
         if (modifier != null)
@@ -82,7 +95,6 @@ public class SistemaExpansaoPorPisos : MonoBehaviour
             }
         }
 
-        // MUDA O MATERIAL VISUAL DO PISO COMPRADO
         Renderer renderer = piso.GetComponent<Renderer>();
 
         if (renderer != null && materialAreaComprada != null)
@@ -90,7 +102,6 @@ public class SistemaExpansaoPorPisos : MonoBehaviour
             renderer.material = materialAreaComprada;
         }
 
-        // LIBERA O GRID NO MODO EDIÇÃO
         if (AreaCafeManager.instancia != null)
         {
             AreaCafeManager.instancia.LiberarGridExtra(new Vector2Int(x, z));
@@ -120,4 +131,37 @@ public class SistemaExpansaoPorPisos : MonoBehaviour
 
         return null;
     }
+
+    private void InstanciarApenasParedesDasQuinas()
+    {
+        if (prefabParedeEsquerda == null || prefabParedeDireita == null || containerParedes == null)
+        {
+            Debug.LogWarning("Configure os prefabs das paredes e o container.");
+            return;
+        }
+
+        Vector3 posParedeEsquerda = new Vector3(minX - 0.5f, alturaParede, minZ - 0.5f) + offsetParedeEsquerda;
+        Vector3 posParedeDireita = new Vector3(maxX + 0.5f, alturaParede, maxZ + 0.5f) + offsetParedeDireita;
+
+        GameObject paredeEsquerda = Instantiate(
+            prefabParedeEsquerda,
+            posParedeEsquerda,
+            Quaternion.Euler(rotacaoParedeEsquerda),
+            containerParedes
+        );
+
+        paredeEsquerda.name = "ParedeQuinaExpansao_Esquerda";
+
+        GameObject paredeDireita = Instantiate(
+            prefabParedeDireita,
+            posParedeDireita,
+            Quaternion.Euler(rotacaoParedeDireita),
+            containerParedes
+        );
+
+        paredeDireita.name = "ParedeQuinaExpansao_Direita";
+
+        Debug.Log("Instanciadas apenas 2 paredes: quina esquerda e quina direita.");
+    }
+
 }

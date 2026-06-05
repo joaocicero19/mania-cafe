@@ -20,6 +20,7 @@ public class ItemLojaData : ScriptableObject
     [Header("Personalização")]
     public Material materialPersonalizacao;
     public bool ehPersonalizacao;
+    public TipoPersonalizacao tipoPersonalizacao;
 
     [Header("Posicionamento")]
     public Vector3 offsetPosicionamento;
@@ -27,13 +28,18 @@ public class ItemLojaData : ScriptableObject
     [Header("Tamanho Grid")]
     public Vector2Int tamanhoGrid = Vector2Int.one;
 
+    [Header("Tipo de colocação")]
+    public bool ehParede;
+
     [Header("Configurações")]
     public bool usaPreview = true;
     public bool precisaAreaCafe = true;
-}
-public enum TipoPersonalizacao
-{
-    Nenhum,
-    Piso,
-    Parede
+
+
+    public enum TipoPersonalizacao
+    {
+        Nenhum,
+        Piso,
+        Parede
+    }
 }

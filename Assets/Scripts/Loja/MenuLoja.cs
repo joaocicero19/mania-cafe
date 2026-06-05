@@ -169,7 +169,8 @@ public class MenuLoja : MonoBehaviour
             nome = itemData.nomeItem,
             prefab = itemData.prefabObjeto,
             offsetPosicionamento = itemData.offsetPosicionamento,
-            tamanhoGrid = itemData.tamanhoGrid
+            tamanhoGrid = itemData.tamanhoGrid,
+            ehParede = itemData.ehParede
         };
 
         SelecionarItem(itemConvertido);
@@ -212,7 +213,23 @@ public class MenuLoja : MonoBehaviour
 
         Vector2Int gridSelecionado = editavel.PosicaoGrid();
 
-        // ÁREA DO CAFÉ
+        // SE FOR PAREDE
+        if (itemAtual != null && itemAtual.ehParede)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, 500f))
+            {
+                if (hit.collider.gameObject.layer != LayerMask.NameToLayer("AreaParede"))
+                    return false;
+
+                return true;
+            }
+
+            return false;
+        }
+
+        // OBJETOS NORMAIS: ÁREA DO CAFÉ
         if (AreaCafeManager.instancia != null)
         {
             if (!AreaCafeManager.instancia.EstaDentroDaArea(gridSelecionado))
